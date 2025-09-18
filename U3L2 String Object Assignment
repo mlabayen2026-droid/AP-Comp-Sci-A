@@ -1,0 +1,25 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.strobjmakai;
+
+/**
+ *
+ * @author MLabayen2026
+ */
+public class StrObjMakai {
+
+    public static void main(String[] args) {
+        //create a string object
+        String nML = new String("Makai Labayen"); //declare new string class
+        System.out.println("My name is " + nML); //print string object of the string Class
+        System.out.println("My name length is " + nML.length()); //print string object of the lenght of string Class
+        System.out.println("My name in upper case is "+ nML.toUpperCase()); //print string object of string class in all upper case
+        System.out.println("My name in lower case is " + nML.toLowerCase()); //print string object of string class in all lower case
+        System.out.println("The first letter in my name is " + nML.charAt(0)); // print string oject of first character of the string class
+        System.out.println("The last letter in my name is " + nML.charAt(12));//print string object of last character of the string class
+        System.out.println("The index of the space between the names is " + nML.indexOf(" "));//print string object of the index of the space in the string class
+        
+    }
+}

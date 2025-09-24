@@ -1,0 +1,60 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.randomnumberproj;
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ *
+ * @author 760ma
+ */
+public class RandomNumberProj {
+
+    public static void main(String[] args) {
+        //set up scanner
+        Scanner scanner = new Scanner (System.in);
+        String StrIn = "";
+        System.out.println ("Enter the character \"p\" to generate a random number or \"q\" to quit:");
+        //create the scan
+        while (true){
+        char targetChar = 'p'; //target character is p
+        char quitChar = 'q'; //define quit character
+        char inputChar = scanner.next().charAt(0);
+        if (inputChar == quitChar) {
+            System.out.println("Bye!");
+            break;//quit program if "q" is pressed
+        }
+        if (inputChar == targetChar) {
+            //determine if the user requested a random nubmer
+        //Declare random number generator
+        Random generator = new Random();
+        int num1;
+        int num2;
+        int num3;
+        int set456;
+        int num7;
+        int num8;
+        int num9;
+        int num10;
+        //first set of 3 without containing digis 8 or 9
+        //random interger from 0 - 7
+        num1 = generator.nextInt(8);
+        num2 = generator.nextInt(8);
+        num3 = generator.nextInt(8);
+        //second set of 3 that cannont be larger than 655
+        set456 = generator.nextInt(656);
+        String set456format = String.format("%03d", set456);//force the second set of 3 to always be 3 digits
+        //thrid set of 4 can be any value between 0-9
+        num7 = generator.nextInt(10);
+        num8 = generator.nextInt(10);
+        num9 = generator.nextInt(10);
+        num10 = generator.nextInt(10);
+        System.out.println("Here is your number! " + num1 + num2 + num3 + "-" + set456format + "-" + num7 + num8 + num9 + num10);
+    }
+    }
+}
+}
+

@@ -1,0 +1,39 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.diceroller;
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ *
+ * @author 760ma
+ */
+public class DiceRoller {
+
+    public static void main(String[] args) {
+        //set up scanner
+        Scanner scanner = new Scanner (System.in);
+        String StrIn = "";
+        System.out.println ("Enter the character \"r\" to roll the 6 sided die or \"q\" to quit:");
+        //create the scan
+        while (true){
+        char targetChar = 'r'; //target character is r
+        char quitChar = 'q'; //define quit character
+        char inputChar = scanner.next().charAt(0);
+        if (inputChar == quitChar) {
+            System.out.println("Bye!");
+            break;//quit program if "q" is pressed
+        }
+        if (inputChar == targetChar) {
+            //determine if the user requested a random nubmer
+        //Declare random number generator
+        Random generator = new Random();
+        System.out.println("Rolling Dice!");
+        int diceValue;
+        diceValue = generator.nextInt(6)+1;
+        System.out.println("You rolled a " + diceValue + "!");
+}}
+    }}

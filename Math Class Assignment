@@ -1,0 +1,88 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.mathclassassignment;
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ *
+ * @author MLabayen2026
+ */
+public class MathClassAssignment {
+public static double roundAvoid(double value, int places) {
+double scale = Math.pow(10, places);
+return Math.round(value * scale) / scale;
+}
+    public static void main(String[] args) {
+       //Problem #1
+        //set up Random Generator
+        Random generator = new Random();
+        int Theta;
+
+        double Sine;
+        double Cosine;
+        double Tangent;
+        //generator radom interger for theta
+        Theta = generator.nextInt(91);
+        Sine = Math.sin(Theta);
+        Cosine = Math.cos(Theta);
+        Tangent = Math.tan(Theta);
+        //Formate the Trig Values to the 3rd decimal place
+        double formattedSine = roundAvoid( Sine , 3);
+        double formattedCosine = roundAvoid (Cosine , 3);
+        double formattedTangent = roundAvoid (Tangent , 3);
+        //Print out the info
+        System.out.println("Number: " + Theta + ", Sine: " + formattedSine
+                + ", Cosine: " + formattedCosine + ", Tangent: " + formattedTangent);
+        
+        //Problem #2
+        
+        double dblRadius;
+        double Circle;
+        double Sphere;
+        
+        //radom double for the radius
+        dblRadius = generator.nextDouble(20)+1;
+        double Radius = roundAvoid(dblRadius, 1);
+        Circle = (Math.PI * Radius * Radius);
+        Sphere = (Math.PI * Radius * Radius * Radius * 4/3);
+        
+        double formatCirc = roundAvoid(Circle , 3);
+        double formatSphere = roundAvoid(Sphere , 3);
+        
+        System.out.println("Radius: " + Radius + ", Circle Area:" + formatCirc + ", Sphere Volume: " + formatSphere);
+        
+        //Problem #3
+        
+        int Rand;
+        double Root;
+        double NatLog;
+        double Log10;
+        
+        Rand = generator.nextInt(99999000)+1000;
+        
+        Root = (Math.sqrt(Rand));
+        NatLog = (Math.log(Rand));
+        Log10 = (Math.log10(Rand));
+        
+        double RoundRoot = roundAvoid(Root , 5);
+        double RoundNatLog = roundAvoid(NatLog, 5);
+        double RoundLog10 = roundAvoid(Log10, 5);
+        
+        System.out.println("Random Number: " + Rand + ", Root: " + RoundRoot + ", Natural Log: " + 
+                RoundNatLog + ", Log10: " + RoundLog10);
+        
+        //Problem #4
+        
+        
+        
+        
+       
+      
+    }
+
+
+}

@@ -18,6 +18,11 @@ return Math.round(value * scale) / scale;
 }
     public static void main(String[] args) {
        //Problem #1
+       /*Write a program that generates a random number in the range 0 to 90
+       inclusive. Using the Math class, display the sine, cosine and tangent for
+       that number, rounded to 3 decimal places,  in the format: "Number: 45
+       Sine: 0.851 Cosine: 0.525 Tangent: 1.620"*/
+       System.out.println(" Problem #1");
         //set up Random Generator
         Random generator = new Random();
         int Theta;
@@ -39,6 +44,11 @@ return Math.round(value * scale) / scale;
                 + ", Cosine: " + formattedCosine + ", Tangent: " + formattedTangent);
         
         //Problem #2
+        /*Generate another random real number, value 1.0 to20.0, to generate the
+        radius of a circle. Use  the MathClass to calculate the  area of that 
+        circle, as well as the volume of a sphere of that radius, all rounded to 
+        3 decimal places.*/
+        System.out.println("\n Problem #2");
         
         double dblRadius;
         double Circle;
@@ -56,7 +66,11 @@ return Math.round(value * scale) / scale;
         System.out.println("Radius: " + Radius + ", Circle Area:" + formatCirc + ", Sphere Volume: " + formatSphere);
         
         //Problem #3
-        
+        /*Generate a random real number in the range 1000.0 to 100,000,000,.0, 
+        and using the Math Class, display that number, it's square root, as well
+        as it'snatural logarithm and it's Log10 values, all rounded to 5 decimal
+        places.*/
+        System.out.println("\n Problem #3");
         int Rand;
         double Root;
         double NatLog;
@@ -76,8 +90,46 @@ return Math.round(value * scale) / scale;
                 RoundNatLog + ", Log10: " + RoundLog10);
         
         //Problem #4
+        /*Using the high real number value just generated, calculate the Mass 
+        required (in Grams) to generate that much energy. (E = mc ^2). Hint, if 
+        speed of light (c) is in m/s, the mass will be in grams - so assume your
+        large number is in joules (j). Look up the value of c in m/s. Use the 
+        "roundAvoid" method to output this number to a user defined number of 
+        decimal places.*/
+
+        System.out.println("\n Problem #4");
+        //set up scanner
+        Scanner scanner = new Scanner (System.in);
+        String StrIn = "";
+        int Energy = Rand; //redifine Random generated number as energy for easier understanding
+        // E = mc^2
+        // m = E/(c*c)
+        // c = 299792458m/s
+        double c; // c meaning speed of light
+        double Mass;
+        c = 299792458; //define c
+        Mass = (Energy)/(c*c);
+        System.out.println("Energy: " + Energy + " joules");
+        System.out.println("Speed of Light: " + c + " meters per second");
+         System.out.println("How many decimal places would you like your Mass to be rounded to?"); //request decimal values
+        int decimalplaces = scanner.nextInt();
+        double MassRounded = roundAvoid(Mass , decimalplaces);
+        System.out.println("Mass: " + MassRounded + " grams");
         
-        
+        //Problem #5
+        /* Use a scanner to get a real number value and an integer input by the
+user. Output the value to the power of the integer, using the Math Class methods,
+again rounded to a user input number of decimal places. */
+        System.out.println("\n Problem #5");
+        System.out.println("What real number value would you like?");
+        double realnumber = scanner.nextDouble(); //scan for real nubmer
+        System.out.println("What interger would you like?");
+        int interger = scanner.nextInt(); // scan for interger
+        System.out.println("How many decimal places would you like your real number raised to the power of the interger rounded to?");
+        int decimalplaces2 = scanner.nextInt(); // scan for rounded decimal place
+        double output = Math.pow(realnumber, interger); // raise real number to the power of the interger
+        double outputRounded = roundAvoid(output , decimalplaces2); // round output
+        System.out.println(outputRounded);
         
         
        

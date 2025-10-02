@@ -7,6 +7,8 @@ package com.mycompany.numberformatassignment;
 import java.util.Scanner;
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.Random;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -82,7 +84,19 @@ it out appropriately.*/
         
         /*4. Generate a random number from 100,000,000 to 999e18as a decimal
 number (no scientific notation). */
-        DecimalFormat decFmt = new DecimalFormat("##########################################################");
-     
+        
+        System.out.println("\nProblem #4\n");
+        
+        //Create Random Number generator
+        Random generator = new Random();
+        DecimalFormat decFmt = new DecimalFormat("");
+        double RandNum;
+        RandNum = generator.nextDouble(999e18-100000000)+100000000;
+        
+        //variable check
+        //System.out.println(RandNum);
+        
+        System.out.println(decFmt.format(RandNum));
+        
     }
 }

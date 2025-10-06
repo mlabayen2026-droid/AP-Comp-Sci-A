@@ -90,8 +90,11 @@ them out, but not with the enum ordinals, but the "month in the year" numbers
             System.out.println(month + ": " + (month.ordinal() + 1));
         }
         
+        System.out.println("\nProblem #2\n");
+        
         /*2) Write a main method which asks for your CCHS username
 (including graduation year).
+        
         
         It must create a string of the username, as well as a string of the year
         part (use substring method of String object). Recall all the years have
@@ -103,7 +106,28 @@ them out, but not with the enum ordinals, but the "month in the year" numbers
 Have it also print "In computer language, you graduate in: " and then the binary
         string version of your graduation year.*/
 
-}
+        Scanner scan = new Scanner (System.in);
+        
+        //ask for CCHS username
+        System.out.println("What is your CCHS username? ");
+        String user = scan.nextLine();
+        
+        //find the year
+        String year = user.substring(user.length()-4);
+        
+        //parse the value
+        int gradyr = Integer.parseInt(year);
+        
+        //grad year to binary
+        
+        String biyear = Integer.toBinaryString(gradyr);
+        
+        //print it out
+        
+        System.out.println("Your grad year is: " + year +
+                "\nThe year after your graduation is: " + (gradyr + 1) + 
+                "\nIn computer language, you graduate in: " + biyear);
+    }
 
     }
 

@@ -37,6 +37,54 @@ if they go over budget).
 
 You can use a while(true) loop for this.
 */
+
+//set up class Item
+        
+        class Item {
+            //declare the variables from the assignment prompt
+            private String strName;
+            private double dblPrice;
+            
+            
+            //set up the constructor
+            
+            public Item(String strName, double dblPrice) {
+                this.strName = strName;
+                this.dblPrice = dblPrice;
+                
+            }
+            
+            //getter
+            // get the name
+            public String getName(){
+                return strName;
+            }
+            
+            //get the Price
+            
+            public double getPrice(){
+                return dblPrice;
+            }
+            
+            //setter
+            // set the name
+            public void setName(String strName){
+                this.strName = strName;
+            }
+            
+            // set the Price
+            public void setPrice (double dblPrice){
+                this.dblPrice = dblPrice;
+            }
+            
+            //do the to string
+            
+            @Override
+            public String toString(){
+                return "Item: " + strName +", Price: " + dblPrice;
+            }
+        }
+
 public class MyStore {
 //max budget
     public static final double MAX_BUDGET = 250.00;
@@ -59,8 +107,8 @@ public class MyStore {
             };
 
         //Dialog
-            System.out.println("Welcome to TheStore!");
-            System.out.println("Your max budget is $" + MAX_BUDGET);
+            System.out.println("Welcome to Cool Store!");
+            System.out.println("The max budget is $" + MAX_BUDGET);
             System.out.println("Heres whats in stock: ");
             System.out.println("T Shirt - $29.99");
             System.out.println("Shoes - $125.99");
@@ -73,14 +121,14 @@ public class MyStore {
         //conditional WHILE 
         while (true) {
             System.out.println(" ");
-            System.out.println("Enter an item name (or type STOP to check-out): ");
+            System.out.println("Enter an item name (or type DONE to check-out): ");
             String choice = input.nextLine();
 
-            if (choice.equalsIgnoreCase("stop")) {
+            if (choice.equalsIgnoreCase("done")) {
                 break;
             }
 
-            // Search for the real item
+            // Search for the item
             Item selected = null;
             for (Item i : items) {
                 if (i.getName().equalsIgnoreCase(choice)) {
@@ -91,93 +139,43 @@ public class MyStore {
             //If it doesn't exist
                 if (selected == null) {
                     System.out.println("Item(s) not found. Try again.");
-                    System.out.println(" ");
                     continue;
                 }
 
             // Check if adding item stays under budget
-                if (total + selected.getCost() > MAX_BUDGET) {
-                    System.out.println(" ");
-                    System.out.println("WARNING: Adding this item will exceed your set $" + MAX_BUDGET + " maximum budget!!!");
-                    System.out.println(" ");
-                    System.out.println("**ITEM REMOVED**");
-                    System.out.println(" ");
-                    System.out.println("Total amount spent: $" + String.format("%.2f", total));
+                if (total + selected.getPrice() > MAX_BUDGET) {
+
+                    System.out.println("\nWARNING: Cannot add item because it is over the $" + MAX_BUDGET + " maximum budget");
+                    System.out.println("\n**ITEM REMOVED**");
+                    System.out.println("\nTotal amount spent: $" + String.format("%.2f", total));
                     System.out.println("Total amount remaining: $" + String.format("%.2f",(MAX_BUDGET - total)));
-                    System.out.println(" ");
                     continue;
                 }
 
-            // It's a valid purchase
-                total += selected.getCost();
+            // if the purchace is good
+                total += selected.getPrice();
                 count++;
 
             //Response
-                System.out.println(" ");
-                System.out.println("Added: " + selected.toString());
+
+                System.out.println("\nAdded: " + selected.toString());
                 System.out.println("Items purchased: " + count);
-                //Calculates for remainder of capital spent & remaining
+                //Calculates for remainder of money spent
                     System.out.println("Total amount spent: $" + String.format("%.2f", total));
                     System.out.println("Total amount remaining: $" + String.format("%.2f",(MAX_BUDGET - total)));
             }
 
-        //Ending Text
-            System.out.println(" ");
-            System.out.println("Final amount due: $" + String.format("%.2f", total));
+        //Check out Text
+            System.out.println("\nFinal amount due: $" + String.format("%.2f", total));
             System.out.println("Change due: $" + String.format("%.2f",(MAX_BUDGET - total)));
+            
             System.out.println("Items purchased: " + count);
             System.out.println(" ");
-            System.out.println("Thank you for shopping at Ted-Mart!");
+            System.out.println("Thank you for shopping! Have a nice day!");
         
 
             }
         }
         
-        //class
         
-        class Item {
-            //declare variables
-            private String strName;
-            private double dblCost;
-            
-            
-            //constructor
-            
-            public Item(String strName, double dblCost) {
-                this.strName = strName;
-                this.dblCost = dblCost;
-                
-            }
-            
-            //getter
-            //name
-            public String getName(){
-                return strName;
-            }
-            
-            //Cost
-            
-            public double getCost(){
-                return dblCost;
-            }
-            
-            //setter
-            //name
-            public void setName(String strName){
-                this.strName = strName;
-            }
-            
-            //Price
-            public void setPrice (double dblCost){
-                this.dblCost = dblCost;
-            }
-            
-            //to string
-            
-            @Override
-            public String toString(){
-                return "Item: " + strName +", Cost: " + dblCost;
-            }
-        }
-    }
-}
+    

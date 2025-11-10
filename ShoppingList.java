@@ -32,28 +32,51 @@ public class ShoppingList {
        //set up scanner
        Scanner scanner = new Scanner(System.in);
       //set up loop
-      System.out.println ("Type \"add\" to add to your shopping list, type"
+
+      while (true){
+          
+          System.out.println ("Type \"add\" to add to your shopping list, type"
               + " \"remove\" to remove an item "
               + "or type \"quit\" to quit");
-      while (true){
+          
           String addStr = "add"; //the add str is add
           String quitStr = "quit"; //the quit string is quit
           String removeStr = "remove"; //the remove string is remove
           String inputStr = scanner.nextLine();
           
-          if (inputStr == addStr){
-              
+          if (inputStr.equals(addStr)){
+              System.out.println("\nWhat would you like to add?");
+              //user will type out the item to add
+              String item;
+              item = scanner.nextLine();
+              ShoppingList.add(item);
+              System.out.println("\nHere is your current list!");
+              for (int i = 0; i < ShoppingList.size(); i++) {
+                  System.out.println((i + 1) + ". " + ShoppingList.get(i));
+                  
+              }
           }
           
-          if (inputStr == removeStr) {
+          if (inputStr.equals(removeStr)) {
+              System.out.println("\nEnter the number of what you would like to remove.");
+              int input = scanner.nextInt();
+              ShoppingList.remove(input - 1);
+              scanner.nextLine(); //fixes a double prompt print bug
+              
+                            System.out.println("\nHere is your current list!");
+              for (int i = 0; i < ShoppingList.size(); i++) {
+                  System.out.println((i + 1) + ". " + ShoppingList.get(i));
               
           }
-          
-          if (inputStr == quitStr) {
-              
           }
+          if (inputStr.equals(quitStr)) {
+              System.exit(0);
+          }
+     
       }
-       //Ask to add an item
-       
     }
 }
+
+      
+    
+

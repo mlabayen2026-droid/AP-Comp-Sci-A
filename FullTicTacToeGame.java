@@ -13,18 +13,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FullTicTacToeGame implements ActionListener {
+public class FullTicTacToeGame implements ActionListener { //detects every button pressed
     // Main components for managing views and game state
-    private JFrame window = new JFrame("Tic-Tac-Toe Game");
-    private CardLayout cardLayout = new CardLayout();
+    private JFrame window = new JFrame("Tic-Tac-Toe Game"); 
+    private CardLayout cardLayout = new CardLayout(); //allows for the switching between the menu panel and the game panel
     private JPanel mainPanel; // Container for menu and game views
-    private JPanel gamePanel;
+    private JPanel gamePanel; // the game panel that will have the status bar and such
     
     // Game-specific components
-    private JButton[][] buttons = new JButton[3][3];
-    private JLabel statusBar;
-    private String currentPlayer = "X";
-    private int movesCount = 0;
+    private JButton[][] buttons = new JButton[3][3]; // 3 x 3 gird array of buttons
+    private JLabel statusBar; //this will tell the player what is happening and who's turn it is
+    private String currentPlayer = "X"; //initially the it is play X's turn
+    private int movesCount = 0; // establish which move it is, and if there are 9 moves the game will know it is a draw since there was no win
 
     public FullTicTacToeGame() {
         window.setSize(400, 450); // Slightly taller for status bar
@@ -49,16 +49,22 @@ public class FullTicTacToeGame implements ActionListener {
     private JPanel createStartPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout()); // Centers items
-        JButton startButton = new JButton("Start Game");
+        JButton startButton = new JButton("Local Game");
         JButton exitButton = new JButton("Exit");
+        JButton aiButton = new JButton("AI Game");
 
         startButton.setActionCommand("StartGame");
         exitButton.setActionCommand("ExitGame");
+        aiButton.setActionCommand("AIGame");
+        
         startButton.addActionListener(this);
+        aiButton.addActionListener(this);
         exitButton.addActionListener(this);
 
         panel.add(startButton);
-        panel.add(exitButton);
+        panel.add(aiButton);
+         panel.add(exitButton);
+        
         return panel;
     }
 

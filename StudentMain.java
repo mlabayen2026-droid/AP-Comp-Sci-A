@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.methoddessign;
+package com.mycompany.studentmain;
 
 /**
  *
@@ -29,57 +29,91 @@ and where the public/private methods are
 */
 
 
-//public class
-public class StudentMain{
-public static void main(String args[]){
-Student st1 = new Student("Bob", "Smith");
-//doesn't do anything right now.
-}
-}
-//basic class Student - should have 3 courses
-class Student
-{
-private String firstName, lastName;
-private Course c1;
-private Course c2;
-private Course c3;
+// Class that does the main things
+public class StudentMain {
+    public static void main(String[] args) {
+        // first student with course and score
+        Student st1 = new Student("Alice", "Brown", "Math", "History", "Physics");
+        st1.setTestScore(0, 95); // statrt with zero becaseu that is how lists work, Math
+        st1.setTestScore(1, 88); // History
+        st1.setTestScore(2, 91); // Physics
 
+        // Make the second student
+        Student st2 = new Student("Charlie", "Davis", "Art", "Biology", "English");
+        st2.setTestScore(0, 75); // Art
+        st2.setTestScore(1, 82); // Biology
+        st2.setTestScore(2, 98); // English
 
-//empty constructor to create empty Student object
-public Student()
-{
-firstName = "";
-lastName = "";
-c1 = new Course();
-c2 = new Course();
-c3 = new Course();
+        // Print out the studne and their courses
+        System.out.println("--- Student Records ---");
+        System.out.println(st1);
+        System.out.println("-----------------------");
+        System.out.println(st2);
+    }
 }
-//basic constructor to create Student object with name only
-public Student(String first, String last)
-{
-firstName = first;
-lastName = last;
-c1 = new Course();
-c2 = new Course();
-c3 = new Course();
+
+// class for the course
+class Course {
+    private String courseName;
+    private int testScore;
+
+    public Course(String name) {
+        this.courseName = name;
+        this.testScore = 0; // start the scores at zero so we can add it later
+    }
+
+    public void setScore(int score) {
+        this.testScore = score; //set the score
+    }
+
+    public int getScore() {
+        return testScore; //get the score
+    }
+
+    @Override
+    public String toString() {
+        return courseName + ": " + testScore + "%"; //pritn out the course with the score formated with percent
+    }
 }
-//needs a constructor to include 3 course objects
-//basic toString code
-public String toString()
-{
-String result;
-result = firstName + " " + lastName + "\n";
-return result;
-}
-}
-//basic class Course
-class Course{
-public int score = 0;
-public int setScore(int inScore){
-score = inScore;
-return score;
-}
-public int getScore(){
-return score;
-}
+
+// Class for the student
+class Student {
+    private String firstName;
+    private String lastName;
+    private Course[] courses;
+
+    // Constuctor to name the courses
+    public Student(String first, String last, String c1, String c2, String c3) {
+        this.firstName = first;
+        this.lastName = last;
+        this.courses = new Course[3];
+        this.courses[0] = new Course(c1);
+        this.courses[1] = new Course(c2);
+        this.courses[2] = new Course(c3);
+    }
+
+    public void setTestScore(int courseIndex, int score) {
+        if (courseIndex >= 0 && courseIndex < courses.length) {
+            courses[courseIndex].setScore(score);
+        }
+    }
+
+    public double getAverage() {
+        double total = 0;
+        for (Course c : courses) {
+            total += c.getScore();
+        }
+        return total / courses.length;
+    }
+
+    @Override
+    public String toString() {
+        String result = "Student: " + firstName + " " + lastName + "\n";
+        result += "Courses:\n";
+        for (Course c : courses) {
+            result += "  - " + c.toString() + "\n";
+        }
+        result += "Average Score: " + String.format("%.2f", getAverage()) + "%";
+        return result;
+    }
 }

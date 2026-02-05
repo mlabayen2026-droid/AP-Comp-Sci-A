@@ -49,18 +49,12 @@ public class App {
     //create the shuffle function
     public static void shuffleArray(String[] arr) {
         Random rand = new Random(); //random to pick what is swapped
-        /*for (int i = arr.length - 1; i > 0; i--) {
-            int index = rand.nextInt(i + 1);
-            //swap them
-            String temp = arr[index];
-            arr[index] = arr[i];
-            arr[i] = temp;
-        } */
+//shuffle1.txt from schology
         for (int i = 0; i < arr.length; i++) {
 //set random target index
 int randomIndexToSwap = rand.nextInt(arr.length);
 //set a temp variable to the value at that index
-String temp = arr[randomIndexToSwap];
+String temp = arr[randomIndexToSwap];//changed the int temp to string temp so that it would work
 //set the target array element to the current element value
 arr[randomIndexToSwap] = arr[i];
 //set the current element to the temp variable value

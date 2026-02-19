@@ -96,10 +96,10 @@ cargoWeight = inCargoWeight;
 //Base toString
 public String toString(){
 String result = "";
-result = "Brand: \t\t\t" + getBrand() + "\n" +
-"Speed (mph): \t" + getSpeed() + "\n" +
-"Passengers: \t" + getPassengers() + "\n" +
-"Cargo (lbs): \t" + getCargoWeight() + "\n";
+result = "Brand: " + getBrand() + "\n" +
+"Speed (mph): " + getSpeed() + "\n" +
+"Passengers: " + getPassengers() + "\n" +
+"Cargo (lbs): " + getCargoWeight() + "\n";
 return result;
 }
 }
@@ -165,7 +165,7 @@ public double getSpeed();
     //usesd the super toString, as well as addingnthe new variable to it.
     public String toString(){
         String result = super.toString() +
-                "MPG :\t\t\t" + this.getMPG();
+                "MPG: " + this.getMPG();
         return  result ;
     }
 }
@@ -182,7 +182,7 @@ class FordMustang extends Car {
     
     @Override
     public String toString() {
-        return "Ford Mustang \n" + super.toString() + "Engine: " + engineSize +"Liter V8";
+        return "Ford Mustang \n" + super.toString() + "\nEngine: " + engineSize +" Liter V8";
     }
     
 }
@@ -198,7 +198,7 @@ class MysteryMachine extends Car{
     
     @Override
     public String toString() {
-        return "Mystery Machine \n" + super.toString()+ "Mystery: " + mystery; 
+        return "Mystery Machine \n" + super.toString()+ "\nMystery: " + mystery; 
     }
     
 }
@@ -286,4 +286,3 @@ class ElectricSkateboard extends Vehicle {
         
     }
 }
-

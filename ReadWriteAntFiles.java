@@ -18,6 +18,10 @@ public static void main(String[] args) {
     
     Scanner scanner = new Scanner(System.in);
     
+    System.out.println("What is the name of your file?");
+    String file = scanner.nextLine();
+    
+    
     System.out.println("What is your name?");
     String name = scanner.nextLine();
     System.out.println("What is your email?");
@@ -35,14 +39,14 @@ DateTimeFormatter shortFormatter = DateTimeFormatter
 .withLocale(Locale.US); // Explicitly setting to US locale for consistent example
 // Format the LocalDateTime to a string
 String formattedDateTime = now.format(shortFormatter);
-String filePath = "Contacts/User.txt";
-String outPath = "Contacts/User.txt";
-String contentToWrite = "Name: " + name
-        + "\nEmail: " + email
-        + "\nAddress: " + address
-        + "\nGraduation Year: " + year
-        + "\nUsername: " + user
-        + "\n" + formattedDateTime;
+String filePath = "Contacts/"+ file + ".txt";
+String outPath = "Contacts/" + file + ".txt";
+String contentToWrite = name
+        + ", " + email
+        + ", " + address
+        + ", " + year
+        + ", " + user
+        + "\n";
 // Write to file
 try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,
 true))) {

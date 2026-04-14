@@ -31,7 +31,7 @@ String outPath = "Contacts/" + file + ".txt";
         private String name, email, address, username;
         private int gradYear;
         
-        public Conact(String name, String email, String address, int gradYear, String username) {
+        public Contact(String name, String email, String address, int gradYear, String username) {
             
             this.name = name;
             this.email = email;
@@ -47,34 +47,42 @@ String outPath = "Contacts/" + file + ".txt";
         ArrayList<Contact> contactList = new ArrayList<>();
 
         try {
-            File myFile = new File("contacts.txt"); // Ensure the filename matches yours
-            Scanner fileReader = new Scanner(myFile);
+    // Use the variable filePath so it matches what the user typed
+    File myFile = new File(filePath); 
 
-            while (fileReader.hasNextLine()) {
-                String line = fileReader.nextLine();
-                
-                // Split the line by commas
-                // data[0] = name, data[1] = email, data[2] = address, etc.
-                String[] data = line.split(",");
-
-                // Create the object (convert gradYear to an int)
-                Contact c = new Contact(
-                    data[0].trim(), 
-                    data[1].trim(), 
-                    data[2].trim(), 
-                    Integer.parseInt(data[3].trim()), 
-                    data[4].trim()
-                );
-
-                // Add to your ArrayList
-                contactList.add(c);
-            }
-            fileReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Error: File not found.");
+    // CREATES the file if it's missing
+    if (!myFile.exists()) {
+        // Create the "Contacts" folder if it doesn't exist
+        if (myFile.getParentFile() != null) {
+            myFile.getParentFile().mkdirs();
         }
+        myFile.createNewFile(); 
+        System.out.println("Created new file: " + filePath);
+    }
+
+    // The Scanner will always find a file (even if it's empty)
+    Scanner fileReader = new Scanner(myFile);
+    while (fileReader.hasNextLine()) {
+        String line = fileReader.nextLine();
+        String[] data = line.split(",");
+        if (data.length >= 5) {
+            Contact c = new Contact(
+                data[0].trim(), data[1].trim(), data[2].trim(),
+                Integer.parseInt(data[3].trim()), data[4].trim()
+            );
+            contactList.add(c);
+        }
+    }
+    fileReader.close();
+
+} catch (IOException e) {
+    // This catches errors from createNewFile() and the Scanner
+    System.out.println("FileSystem Error: " + e.getMessage());
+}
     
+    boolean running = true;
     
+    while (running) {
     
     System.out.println("What would you like to do?"
             + "\nType \"a\" to add contact details"
@@ -134,20 +142,33 @@ System.err.println("An error occurred while reading from the file: "
 + e.getMessage());
 }
 
+
 }
     else if (command.equals("e")){ 
-    System.out.println("you pressed e");
+    contactList.sort(Comparator.comparing(c -> c.email));
 }
 else if (command.equals("y")){ 
-    System.out.println("you pressed y");
+    contactList.sort(Comparator.comparingInt(c -> c.gradYear));
 }
 else if (command.equals("n")){ 
-    System.out.println("you pressed n");
+    contactList.sort(Comparator.comparing(c -> c.name));
 }
 else { 
     System.out.println("Invalid action");
 }
+    
+    if (running) {
+        System.out.println("\nContinue?");
+        System.out.println("y/n");
+        String answer = scanner.nextLine();
+        if (answer.equals ("n")){
+            running = false;
+            System.out.println("Bye!");
+        }
+    }
+    
+    
 }
-
+}
 
 }

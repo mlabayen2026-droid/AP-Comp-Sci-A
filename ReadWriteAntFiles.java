@@ -104,6 +104,8 @@ String outPath = "Contacts/" + file + ".txt";
     System.out.println("What is your username?");
     String user = scanner.nextLine();
     
+    Contact newContact = new Contact(name, email, address, Integer.parseInt(year), user);
+    contactList.add(newContact);
     
 LocalDateTime now = LocalDateTime.now();
 DateTimeFormatter shortFormatter = DateTimeFormatter
@@ -122,7 +124,7 @@ String contentToWrite = name
 try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,
 true))) {
 //writer.write(contentToWrite);
-writer.append(contentToWrite + "\n");
+writer.append(contentToWrite);
 System.out.println("Successfully wrote to the file." +
 formattedDateTime);
 } catch (IOException e) {
@@ -156,6 +158,15 @@ else if (command.equals("n")){
 else { 
     System.out.println("Invalid action");
 }
+  
+    System.out.println("\nContacts: ");
+    for (Contact c : contactList) {
+        System.out.println(c);
+    }
+    
+    
+    
+    
     
     if (running) {
         System.out.println("\nContinue?");

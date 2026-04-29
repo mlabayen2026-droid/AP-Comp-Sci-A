@@ -27,19 +27,20 @@ public class Escondido {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Escondido The Game!"
-                + "\nPress F to Start"
-                + "\nPress R for Rules"
-                + "\nPress E to Exit");
+
         boolean running = true;
         
         while (running) {
+                    System.out.println("\nWelcome to Escondido The Game!"
+                + "\nPress F to Start"
+                + "\nPress R for Rules"
+                + "\nPress E to Exit");
         String MenuButton = scanner.nextLine();
         if (MenuButton.equalsIgnoreCase("F")){
             startGame();
         }
         else if (MenuButton.equalsIgnoreCase("R")){
-            System.out.println("Rules:"
+            System.out.println("\nRules:"
                     + "\nYou wakeup at the Transit Center everyday"
                     + "\nYou Fall asleep at 6pm everyday"
                     + "\nYou can hold 3 items at a time"
@@ -57,8 +58,14 @@ public class Escondido {
       
 }
       public static void startGame(){
-            System.out.println("Starting Game...");
-            System.out.println("You wake up in the Escondido Transit Center");
-            
+          Scanner scanner = new Scanner(System.in);
+          
+            System.out.println("\nStarting Game...");
+            System.out.println("You wake up in the Escondido Transit Center"
+                    + "\nThere's a box on the ground"
+                    + "\nWhat would you like to do?"
+                    + "\nInteract with the box [e]"
+                    + "\nStart your day [f]");
+            String Input = scanner.nextLine(); 
         }
 }

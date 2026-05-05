@@ -166,6 +166,19 @@ public class Escondido {
                 InGameDay(input);
                 daysPlayed += 1;
                 System.out.println("\nIt is 6:00PM and you drop to the floor asleep");
+                // Reload the updated dollars from the save file
+                file = new File("Game Files/save.txt");
+                if (file.exists() && file.length() > 0) {
+                    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                        String line = reader.readLine();
+                        if (line != null && !line.trim().isEmpty()) {
+                            String[] values = line.split(",");
+                            dollars = Integer.parseInt(values[1].trim());
+                        }
+                    } catch (IOException | NumberFormatException e) {
+                        System.out.println("Error reading updated wallet value");
+                    }
+                }
                 //save new game data
                 saveGame(daysPlayed, dollars);
             }
@@ -373,7 +386,7 @@ public class Escondido {
                       + "\n[f] Talk to Fancy Guy                  " + clockHour + ":" + formattedMinutes + "PM"
                               + "\n");
               String interact = input.nextLine(); 
-              if(interact.equalsIgnoreCase("e")){
+              
           if(interact.equalsIgnoreCase("e")){
                 System.out.println("You search the area and find $3 on the ground!");
                 
@@ -398,7 +411,7 @@ public class Escondido {
                 
                 elapsedTime +=40;
           }
-              }
+              
           else if(interact.equalsIgnoreCase("f")){
               fancyGuy(input);
           elapsedTime +=40;    
@@ -475,7 +488,7 @@ public class Escondido {
                     }
                 } 
                     else {
-                    System.out.println("The door is locked. You need the Car Keys to open it.");
+                    System.out.println("The door is locked. You need the Keys to open it.");
                 }
                 elapsedTime += 40;
           
@@ -769,7 +782,7 @@ public class Escondido {
               System.out.println("You don't have enough money for candy. It costs $5");
           }
           }
-          if (Interact.equalsIgnoreCase("f")){
+          else if (Interact.equalsIgnoreCase("f")){
               System.out.println("\nConcession Worker: I hate my job...");
           }
           else{

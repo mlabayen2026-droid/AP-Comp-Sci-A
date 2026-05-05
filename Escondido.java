@@ -201,7 +201,7 @@ public class Escondido {
           
           
           
-         
+         while (elapsedTime < 60){
               int hours = 12 + (elapsedTime/60);
               int clockHour = hours % 12==0 ? 12 : hours % 12;
           int minutes = elapsedTime % 60;
@@ -227,7 +227,7 @@ public class Escondido {
                 System.out.println("That was not an option");
             }
               
-              
+         }
           
       }
       
@@ -267,6 +267,7 @@ public class Escondido {
           }
               else{
                 System.out.println("That was not an option");
+                
             }
     }
        afternoonTravel(input, elapsedTime);     
@@ -305,6 +306,8 @@ public class Escondido {
       
       //AFTERNOON TRAVEL METHOD
       public static void afternoonTravel(Scanner input, int elapsedTime){
+         
+          while(elapsedTime < 180){
           int hours = 12 + (elapsedTime/60);
               int clockHour = hours % 12==0 ? 12 : hours % 12;
           int minutes = elapsedTime % 60;
@@ -330,6 +333,7 @@ public class Escondido {
               else{
                 System.out.println("That was not an option");
             }
+          }
       }
       
       //AFTERNOON LOCATIONS
@@ -425,6 +429,8 @@ public class Escondido {
       }
       //DUSK TRAVEL METHOD
             public static void duskTravel(Scanner input, int elapsedTime){
+                
+                while (elapsedTime < 300){
           int hours = 12 + (elapsedTime/60);
               int clockHour = hours % 12==0 ? 12 : hours % 12;
           int minutes = elapsedTime % 60;
@@ -450,7 +456,9 @@ public class Escondido {
               else{
                 System.out.println("That was not an option");
             }
-      }
+                }
+                }
+                
       
       
       //DUSK LOCATIONS
@@ -481,7 +489,7 @@ public class Escondido {
                     if (mechChoice.equalsIgnoreCase("e")) {
                         if (inventory.contains("Heart of Escondido")) {
                             mechsuitEnding();
-                            System.exit(0);
+                            elapsedTime += 360;
                         } else {
                             System.out.println("You need the Heart of Escondido to power up the suit's reactor!");
                         }
@@ -931,26 +939,24 @@ public class Escondido {
       }
       // TRUE ENDINGS
     public static void mechsuitEnding() {
-        System.out.println("\nENDING 1: The March on San Marcos");
+        System.out.println("\nTemporary Win: The March on San Marcos");
         System.out.println("Using the Keys to unlock the Joor Muffler mechsuit...");
         System.out.println("Inserting the Heart of Escondido into the reactor core...");
         System.out.println("The suit roars to life with a deep, mechanical rumble.");
         System.out.println("You pilot the massive mech through the streets of Escondido, breaking through barricades.");
-        System.out.println("You cross the boundary into San Marcos, and lay ruin upon the entire land of San Marcos.");
+        System.out.println("You cross the boundary into San Marcos, and lay ruin upon the entire land.");
         System.out.println("Escondido establishes its dominance.");
         System.out.println("You have been given the title Mr. Escondido");
-        System.out.println("You have won the day but you are not free of the loop");
+        System.out.println("You have won the day but you have not broken free of the Transit Center Time loop");
     }
 
     public static void regalEnding() {
-        System.out.println("\nENDING 2: Transit Center Time Loop ");
+        System.out.println("\nTrue Ending: Transit Center Time Loop ");
         System.out.println("Prying the boarded doors open with the Crowbar...");
         System.out.println("Using the Keycard to gain admin access to the devices in the lab.");
         System.out.println("You turn off the saftey messures and all firewalls.");
         System.out.println("As the clock ticks closer to 6:00PM you overload the machine with the Heart of Escondido.");
         System.out.println("The device destabilizes, triggering a critical system malfunction.");
-        System.out.println("You run out of the Regal as fast as you can.");
-        System.out.println("The time loop shatters in a massive explosion.");
         System.out.println("You are overwhelmed with relief, finally you are free. "
                 + "\nYou have won the game!");
     }

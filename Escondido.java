@@ -50,9 +50,9 @@ public class Escondido {
                     + "\nYou fall asleep at 6:00PM everyday"
                     + "\nYou can hold 3 items at a time"
                     + "\nYou can vist 3 locations everyday"
-                    + "\nYou can interact 3 times per location"
-                    + "\nEvery interaction takes 40 in game minutes"
-                    + "\nEvery travel takes 40 in game minutes");
+                    + "\nYou can interact 1 time per location"
+                    + "\nEvery interaction takes 60 in game minutes"
+                    + "\nEvery travel takes 60 in game minutes");
         }
         else if (MenuButton.equalsIgnoreCase("E")){
             running = false;
@@ -215,12 +215,12 @@ public class Escondido {
               String interact = input.nextLine(); 
               if(interact.equalsIgnoreCase("e")){
           System.out.println("Walking to the Gazebo");
-          elapsedTime +=40;
+          elapsedTime +=60;
           gazebo(input, elapsedTime);
               }
           else if(interact.equalsIgnoreCase("f")){
               System.out.println("Walking to the Grand Tea Room");
-          elapsedTime +=40;    
+          elapsedTime +=60;    
               teaRoom(input, elapsedTime);
           }
               else{
@@ -257,12 +257,12 @@ public class Escondido {
                 } else {
                     System.out.println("You already have a Lighter.");
                 }
-                elapsedTime +=40;
+                elapsedTime +=60;
           
               }
           else if(interact.equalsIgnoreCase("f")){
               kid(input);
-          elapsedTime +=40;    
+          elapsedTime +=60;    
               
           }
               else{
@@ -288,11 +288,11 @@ public class Escondido {
               if(interact.equalsIgnoreCase("e")){
           System.out.println("You search the area and find an old, dusty note!");
                 System.out.println("Note: 'The time loop is not infinite. There is a cinematic way out, you just have to find it.'");
-                elapsedTime +=40;
+                elapsedTime +=60;
             }
             else if(interact.equalsIgnoreCase("f")){
                 teaSeller(input);
-                elapsedTime +=40;
+                elapsedTime +=60;
           
               }
 
@@ -319,12 +319,12 @@ public class Escondido {
               String interact = input.nextLine(); 
               if(interact.equalsIgnoreCase("e")){
           System.out.println("Walking to 7-11");
-          elapsedTime +=40;
+          elapsedTime +=60;
           sevenEleven(input, elapsedTime);
               }
           else if(interact.equalsIgnoreCase("f")){
               System.out.println("Walking to Burger Bench");
-          elapsedTime +=40;    
+          elapsedTime +=60;    
               burgerBench(input, elapsedTime);
           }
               else{
@@ -358,12 +358,12 @@ public class Escondido {
                 } else {
                     System.out.println("You already have the Keys.");
                 }
-                elapsedTime +=40;
+                elapsedTime +=60;
           
               }
           else if(interact.equalsIgnoreCase("f")){
               shadyGuy(input);
-          elapsedTime +=40;    
+          elapsedTime +=60;    
               
           }
               else{
@@ -409,12 +409,12 @@ public class Escondido {
                 saveGame(day, dollars);
                 System.out.println("Your wallet now has $" + dollars);
                 
-                elapsedTime +=40;
+                elapsedTime +=60;
           }
               
           else if(interact.equalsIgnoreCase("f")){
               fancyGuy(input);
-          elapsedTime +=40;    
+          elapsedTime +=60;    
               
           }
               else{
@@ -439,12 +439,12 @@ public class Escondido {
               String interact = input.nextLine(); 
               if(interact.equalsIgnoreCase("e")){
           System.out.println("Walking to Joor Muffler");
-          elapsedTime +=40;
+          elapsedTime +=60;
           joorMuffler(input, elapsedTime);
               }
           else if(interact.equalsIgnoreCase("f")){
               System.out.println("Walking to Regal Escondido");
-          elapsedTime +=40;    
+          elapsedTime +=60;    
               regalEscondido(input, elapsedTime);
           }
               else{
@@ -490,12 +490,12 @@ public class Escondido {
                     else {
                     System.out.println("The door is locked. You need the Keys to open it.");
                 }
-                elapsedTime += 40;
+                elapsedTime += 60;
           
               }
           else if(interact.equalsIgnoreCase("f")){
               mechanic(input);
-          elapsedTime +=40;    
+          elapsedTime +=60;    
               
           }
               else{
@@ -547,12 +547,12 @@ public class Escondido {
                 } else {
                     System.out.println("You need a Crowbar to pry this door open.");
                 }
-                elapsedTime +=40;
+                elapsedTime +=60;
           
               }
           else if(interact.equalsIgnoreCase("f")){
               concessionWorker(input);
-          elapsedTime +=40;    
+          elapsedTime +=60;    
               
           }
               else{

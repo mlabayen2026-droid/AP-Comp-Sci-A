@@ -15,17 +15,20 @@ import java.time.format.FormatStyle;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.*;
+import javax.sound.sampled.*;
 /**
  *
  * @author MLabayen2026
  */
 public class Escondido {
 
+    private static Clip currentClip = null;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         //creates the game files needed to play
+
         GameFiles();
         
         
@@ -42,6 +45,7 @@ public class Escondido {
                             + "\n");
         String MenuButton = input.nextLine();
         if (MenuButton.equalsIgnoreCase("F")){
+
             startGame(input);
         }
         else if (MenuButton.equalsIgnoreCase("R")){
@@ -145,6 +149,8 @@ public class Escondido {
 
                     }
                 }
+                stopSound();
+                playSound("LOBBY.wav");
             System.out.println("\nYou wake up in the Escondido Transit Center"
                     + "\nDay: " + daysPlayed + "  | Dollars: $" + dollars
                     + "\nThere's a box on the ground"
@@ -163,6 +169,7 @@ public class Escondido {
             
             else if (Input.equalsIgnoreCase("f")){
                 //game logic
+                stopSound();
                 InGameDay(input);
                 daysPlayed += 1;
                 System.out.println("\nIt is 6:00PM and you drop to the floor asleep");
@@ -247,7 +254,8 @@ public class Escondido {
               String interact = input.nextLine(); 
               if(interact.equalsIgnoreCase("e")){
           System.out.println("You search the area and find a Lighter!");
-                ArrayList<String> inventory = loadInventory();
+          playSound("LIGHTER.wav");      
+          ArrayList<String> inventory = loadInventory();
                 if (!inventory.contains("Lighter") && inventory.size() < 3) {
                     inventory.add("Lighter");
                     saveInventory(inventory);
@@ -287,7 +295,8 @@ public class Escondido {
                               + "\n");
               String interact = input.nextLine(); 
               if(interact.equalsIgnoreCase("e")){
-          System.out.println("You search the area and find an old, dusty note!");
+          playSound("DISCOVER.wav");
+                  System.out.println("You search the area and find an old, dusty note!");
                 System.out.println("Note: 'The time loop is not infinite. There is a cinematic way out, you just have to find it.'");
                 elapsedTime +=60;
             }
@@ -338,7 +347,8 @@ public class Escondido {
       
       //AFTERNOON LOCATIONS
       public static void sevenEleven(Scanner input, int elapsedTime){
-         System.out.println("\nYou arrive at 7-11!\n");
+         playSound("711.wav");
+          System.out.println("\nYou arrive at 7-11!\n");
           while (elapsedTime < 240){
               int hours = 12 + (elapsedTime/60);
               int clockHour = hours % 12==0 ? 12 : hours % 12;
@@ -352,7 +362,8 @@ public class Escondido {
               String interact = input.nextLine(); 
               if(interact.equalsIgnoreCase("e")){
           System.out.println("You search the area and find Keys!");
-                ArrayList<String> inventory = loadInventory();
+          playSound("KEYS.wav");      
+          ArrayList<String> inventory = loadInventory();
                 if (!inventory.contains("Keys") && inventory.size() < 3) {
                     inventory.add("Keys");
                     saveInventory(inventory);
@@ -378,6 +389,7 @@ public class Escondido {
       }
       
       public static void burgerBench(Scanner input, int elapsedTime){
+          playSound("BURGER.wav");
           System.out.println("\nYou arrive at Burger Bench!\n");
           while (elapsedTime < 240){
               int hours = 12 + (elapsedTime/60);
@@ -392,7 +404,8 @@ public class Escondido {
               String interact = input.nextLine(); 
               
           if(interact.equalsIgnoreCase("e")){
-                System.out.println("You search the area and find $3 on the ground!");
+              playSound("MONEY.wav");  
+              System.out.println("You search the area and find $3 on the ground!");
                 
                 File file = new File("Game Files/save.txt");
                 int day = 0;
@@ -514,6 +527,7 @@ public class Escondido {
       }
       
       public static void regalEscondido(Scanner input, int elapsedTime){
+          playSound("MOVIE.wav");
           System.out.println("\nYou arrive at Regal Escondido!\n");
           while (elapsedTime < 360){
               int hours = 12 + (elapsedTime/60);
@@ -543,9 +557,23 @@ public class Escondido {
                         String labChoice = input.nextLine().trim();
                         if (labChoice.equalsIgnoreCase("e")) {
                             if (inventory.contains("Keycard") && inventory.contains("Heart of Escondido")) {
+                                playSound("BOOM.wav");
                                 regalEnding();
+                                System.out.println("\nExit the loop?"
+                                        + "\ny/n?");
+                                String decision = input.nextLine().trim();
+                                if (decision.equalsIgnoreCase("y")){
                                 System.exit(0);
-                            } else {
+
+                                }
+                                else{
+                                
+                                }
+                            
+                                }
+                                
+                            
+                                  else {
                                 System.out.println("You need both the Keycard and the Heart of Escondido to overcharge the device!");
                             }
                         }
@@ -577,6 +605,7 @@ public class Escondido {
       //CHARCTER INTERACTIONS
       
       public static void kid(Scanner input){
+          playSound("LISTEN.wav");
           System.out.println("\nKid: Hey stranger! Can you get me some candy?"
                   + "\n[e] Give the kid candy"
                   + "\n[f] He can go without more sugar");
@@ -681,6 +710,7 @@ public class Escondido {
               }
               
               dollars += 10;
+             playSound("MONEY.wav");
               saveGame(day, dollars);
               System.out.println("You give the lighter to the shady guy. He hands you $10. Wallet now has: $" + dollars);
           } 
@@ -709,8 +739,10 @@ public class Escondido {
               inventory.remove("Tea");
               if (!inventory.contains("Heart of Escondido") && inventory.size() < 3) {
                   inventory.add("Heart of Escondido");
+                  playSound("*DISCOVER.way");
               } else if (inventory.size() >= 3) {
                   inventory.add("Heart of Escondido");
+              playSound("DISCOVER");
               }
               saveInventory(inventory);
               System.out.println("You give the tea to the fancy guy. He hands you a stone called the Heart of Escondido.");
@@ -937,8 +969,47 @@ public class Escondido {
              System.out.println("Game save failed");
          }
       }
+      
+public static void playSound(String soundFile) {
+    try {
+        // Stop any track that is currently playing first
+        stopSound();
+
+        File file = new File("Game Files/Sounds/" + soundFile);
+        if (file.exists()) {
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            
+            // Assign the clip directly to the global class variable
+            currentClip = AudioSystem.getClip(); 
+            currentClip.open(audioStream);
+            currentClip.start();
+        } else {
+            System.out.println("[Sound Error] File not found: " + file.getPath());
+        }
+    } catch (Exception e) {
+        System.out.println("[Sound Error] Could not play sound: " + e.getMessage());
+    }
+}
+
+public static void stopSound() {
+    try {
+        // Force stop, flush the data line, and completely close the resource
+        if (currentClip != null) {
+            currentClip.stop();
+            currentClip.flush();
+            currentClip.close();
+            currentClip = null; // Reset the pointer
+        }
+    } catch (Exception e) {
+        System.out.println("[Sound Error] Error stopping clip: " + e.getMessage());
+    }
+}
+      
+      
       // TRUE ENDINGS
     public static void mechsuitEnding() {
+        stopSound();
+        playSound("MECH.wav");
         System.out.println("\nTemporary Win: The March on San Marcos");
         System.out.println("Using the Keys to unlock the Joor Muffler mechsuit...");
         System.out.println("Inserting the Heart of Escondido into the reactor core...");
@@ -951,6 +1022,7 @@ public class Escondido {
     }
 
     public static void regalEnding() {
+        stopSound();
         System.out.println("\nTrue Ending: Transit Center Time Loop ");
         System.out.println("Prying the boarded doors open with the Crowbar...");
         System.out.println("Using the Keycard to gain admin access to the devices in the lab.");
@@ -959,5 +1031,7 @@ public class Escondido {
         System.out.println("The device destabilizes, triggering a critical system malfunction.");
         System.out.println("You are overwhelmed with relief, finally you are free. "
                 + "\nYou have won the game!");
+                playSound("TRUE.wav");
+        
     }
 }
